@@ -1,0 +1,23 @@
+﻿@using Newtonsoft.Json
+@model Stho.Auth.WebExample.Models.AppleCallbackViewModel
+
+@{
+    ViewBag.Title = "AppleCallback";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.AccessToken != null)
+{
+    <pre>@JsonConvert.SerializeObject(Model.AccessToken, Formatting.Indented)</pre>
+    <pre>@JsonConvert.SerializeObject(Model.AccessToken.ClientResponse, Formatting.Indented)</pre>
+    <pre>@JsonConvert.SerializeObject(Model.AccessToken.Identity, Formatting.Indented)</pre>
+}
+
+@if(Model.ErrorMessage != null)
+{
+    @Model.ErrorMessage
+    <br/>
+    <br/>
+    <br/>
+    @Model.StackTrace
+}

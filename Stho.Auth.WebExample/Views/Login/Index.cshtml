@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<style>
+    input {
+        width: 100%;
+        max-width: 900px;
+    }
+</style>
+
+@using (Html.BeginForm("AppleCallback", "Login"))
+{
+    <div>
+        @Html.Label("Code", "Code")
+        @Html.TextBox("Code")
+    </div>
+    <div>
+        @Html.Label("State", "State")
+        @Html.TextBox("State")
+    </div>
+    <button>Send</button>
+}

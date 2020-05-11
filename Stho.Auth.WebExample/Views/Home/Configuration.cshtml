@@ -1,0 +1,15 @@
+﻿@using Newtonsoft.Json
+@model object
+
+@{
+    ViewBag.Title = "title";
+}
+
+@if (Model == null)
+{
+    <text>config not loaded correctly</text>
+}
+else
+{
+    <pre>@JsonConvert.SerializeObject(Model, Formatting.Indented)</pre>
+}
