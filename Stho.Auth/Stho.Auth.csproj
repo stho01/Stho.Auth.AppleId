@@ -72,7 +72,6 @@
         <Compile Include="Apple\IAppleIdConfiguration.cs" />
         <Compile Include="Apple\IAppleIdentityTokenReader.cs" />
         <Compile Include="Apple\IAppleIdService.cs" />
-        <Compile Include="Apple\Implementation\AppleConfigurationProvider.cs" />
         <Compile Include="Apple\Implementation\AppleIdClient.cs" />
         <Compile Include="Apple\Implementation\AppleIdentityTokenReader.cs" />
         <Compile Include="Apple\Implementation\AppleIdService.cs" />
