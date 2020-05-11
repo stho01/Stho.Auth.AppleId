@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Web.Mvc;
 using Stho.Auth.Apple;
 using Stho.Auth.Apple.Models;
@@ -24,6 +25,7 @@ namespace Stho.Auth.WebExample.Controllers
             return Redirect(signInUri.ToString());
         }
 
+        [HttpPost]
         public ActionResult AppleCallback(AppleCallbackRequest request)
         {
             try
