@@ -58,3 +58,28 @@ public class AppleAccessToken
     public bool IsTokenValid { get; }
 }
 ```
+
+# Dependency setup
+
+With Unity framwork
+```cs
+public static void RegisterTypes(IUnityContainer container)
+{
+    container.RegisterType<IAppleIdClient, AppleIdClient>();
+    container.RegisterType<IAppleIdService, AppleIdService>();
+    container.RegisterType<IAppleIdentityTokenReader, AppleIdentityTokenReader>();
+    container.RegisterType<IAppleClientSecretGenerator, AppleSecretGenerator>();
+    container.RegisterType<IAppleConfigurationProvider, AppleWebConfigurationProvider>();
+}
+```
+
+or use extension method in `Stho.Auth.UnityExtension.Apple`
+
+```cs
+using Stho.Auth.UnityExtension.Apple;
+
+public static void RegisterTypes(IUnityContainer container)
+{
+    container.AddAppleIdService();
+}
+```
