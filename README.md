@@ -17,7 +17,7 @@
          privateKey="your_pk_code" />
 </configuration>
 ```
-# Signin precedure
+# Signin procedure
 
 ```cs
 public ActionResult SignInWithApple()
