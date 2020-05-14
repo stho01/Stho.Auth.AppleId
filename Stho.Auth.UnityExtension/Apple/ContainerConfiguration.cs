@@ -13,6 +13,7 @@ namespace Stho.Auth.UnityExtension.Apple
             container.RegisterType<IAppleIdentityTokenReader, AppleIdentityTokenReader>();
             container.RegisterType<IAppleClientSecretGenerator, AppleSecretGenerator>();
             container.RegisterType<IAppleConfigurationProvider, AppleWebConfigurationProvider>();
+            container.RegisterType<IAppleClientSecretGeneratorFactory, AppleSecretGeneratorFactory>();
         }
     }
 }

@@ -4,31 +4,8 @@ namespace Stho.Auth.Apple.Configuration
 {
     public class AppleIdElementCollection : ConfigurationElementCollection
     {
-        private const string RedirectUriPropertyKey = "redirectUri";
-        private const string AudiencePropertyKey = "audience";
-        private const string ExpiresInMinutesPropertyKey = "expiresInMinutes";
-        
-        [ConfigurationProperty(RedirectUriPropertyKey)]
-        public string RedirectUri
-        {
-            get => this[RedirectUriPropertyKey] as string;
-            set => this[RedirectUriPropertyKey] = value;
-        }
-
-        [ConfigurationProperty(AudiencePropertyKey)]
-        public string Audience
-        {
-            get => this[AudiencePropertyKey] as string;
-            set => this[AudiencePropertyKey] = value;
-        }
-        
-        [ConfigurationProperty(ExpiresInMinutesPropertyKey)]
-        public int ExpiresInMinutes
-        {
-            get => (this[ExpiresInMinutesPropertyKey] as int?) ?? 0;
-            set => this[ExpiresInMinutesPropertyKey] = value;
-        }
-        
+        public override ConfigurationElementCollectionType CollectionType => ConfigurationElementCollectionType.BasicMap;
+        protected override string ElementName => "client";
         protected override ConfigurationElement CreateNewElement() => new AppleIdClientElement();
         protected override object GetElementKey(ConfigurationElement element) => ((AppleIdClientElement)element).Id;
 

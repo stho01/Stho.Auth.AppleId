@@ -6,8 +6,7 @@ namespace Stho.Auth.Apple.Configuration
     {
         private const string AppleIdCollectionPropertyKey = "appleId";
         
-        [ConfigurationProperty(AppleIdCollectionPropertyKey, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(AppleIdElementCollection), AddItemName = "Add", RemoveItemName = "Remove", ClearItemsName = "Clear")]
-        public AppleIdElementCollection AppleId => this[AppleIdCollectionPropertyKey] as AppleIdElementCollection;
+        [ConfigurationProperty(AppleIdCollectionPropertyKey)]
+        public AppleIdElement AppleId => (AppleIdElement) base[AppleIdCollectionPropertyKey];
     }
 }

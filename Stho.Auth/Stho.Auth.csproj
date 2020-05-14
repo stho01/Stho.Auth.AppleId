@@ -67,6 +67,7 @@
     <ItemGroup>
         <Compile Include="Apple\Configuration\AppleConfigurationSection.cs" />
         <Compile Include="Apple\Configuration\AppleIdClientElement.cs" />
+        <Compile Include="Apple\Configuration\AppleIdElement.cs" />
         <Compile Include="Apple\Configuration\AppleIdElementCollection.cs" />
         <Compile Include="Apple\IAppleClientSecretGenerator.cs" />
         <Compile Include="Apple\IAppleClientSecretGeneratorFactory.cs" />

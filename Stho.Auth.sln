@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stho.Auth.UnityExtension", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stho.Auth.WebExample", "Stho.Auth.WebExample\Stho.Auth.WebExample.csproj", "{CDB348F0-9938-42EE-A63C-F560DA19C204}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stho.Auth.IntegrationTests", "Stho.Auth.IntegrationTests\Stho.Auth.IntegrationTests.csproj", "{386ED449-F0FF-4DAC-96F8-FA4C9A7B5794}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{CDB348F0-9938-42EE-A63C-F560DA19C204}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDB348F0-9938-42EE-A63C-F560DA19C204}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDB348F0-9938-42EE-A63C-F560DA19C204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{386ED449-F0FF-4DAC-96F8-FA4C9A7B5794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{386ED449-F0FF-4DAC-96F8-FA4C9A7B5794}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{386ED449-F0FF-4DAC-96F8-FA4C9A7B5794}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{386ED449-F0FF-4DAC-96F8-FA4C9A7B5794}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

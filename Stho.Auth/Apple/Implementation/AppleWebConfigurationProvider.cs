@@ -25,23 +25,24 @@ namespace Stho.Auth.Apple.Implementation
             return config;
         }
 
-        private IAppleIdConfiguration[] ReadFromConfigSection()
+        private static IAppleIdConfiguration[] ReadFromConfigSection()
         {
             var configSection = ConfigurationManager.GetSection("apple") as AppleSection;
             if (configSection == null)
                 throw new ConfigurationErrorsException("Apple section not configured");
 
-            var configs = new IAppleIdConfiguration[configSection.AppleId.Count];
-            for (var i = 0; i < configSection.AppleId.Count; i++)
+            var clients = configSection.AppleId.Clients;
+            var configs = new IAppleIdConfiguration[clients.Count];
+            for (var i = 0; i < clients.Count; i++)
             {
-                var config = configSection.AppleId[i];
+                var config = clients[i];
                 configs[i] = new AppleIdConfiguration
                 {
                     Audience = configSection.AppleId.Audience,
                     RedirectUri = configSection.AppleId.RedirectUri,
                     ExpiresInMinutes = configSection.AppleId.ExpiresInMinutes,
                     Issuer = config.Issuer,
-                    ClientId = config.Issuer,
+                    ClientId = config.Id,
                     KeyId = config.KeyId,
                     PrivateKey = config.PrivateKey,
                 };

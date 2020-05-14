@@ -4,12 +4,12 @@ namespace Stho.Auth.Apple.Configuration
 {
     public class AppleIdClientElement : ConfigurationElement
     {
-        private const string IdPropertyKey = "id";
+        private const string IdPropertyKey = "clientId";
         private const string KeyIdPropertyKey = "keyId";
         private const string IssuerPropertyKey = "issuer";
         private const string PrivateKeyPropertyKey = "privateKey";
 
-        [ConfigurationProperty(IdPropertyKey, IsKey = true, IsRequired = true)]
+        [ConfigurationProperty(IdPropertyKey, IsRequired = true, IsKey = true)]
         public string Id
         {
             get => this[IdPropertyKey] as string;

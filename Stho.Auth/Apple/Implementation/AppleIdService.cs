@@ -76,7 +76,8 @@ namespace Stho.Auth.Apple.Implementation
             
             return new AppleSignInUri {
                 Uri = uriBuilder.Uri,
-                State = state
+                State = state,
+                Configuration = configuration
             };
         }
     }
