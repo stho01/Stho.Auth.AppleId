@@ -7,37 +7,39 @@ namespace Stho.Auth.Apple.Implementation
 {
     public class AppleIdService : IAppleIdService
     {
-        private readonly IAppleClientSecretGenerator _appleClientSecretGenerator;
+        private readonly IAppleClientSecretGeneratorFactory _appleClientSecretGeneratorFactory;
         private readonly IAppleIdClient _client;
         private readonly IAppleIdentityTokenReader _appleIdentityTokenReader;
-        private readonly IAppleIdConfiguration _configuration;
+        private readonly IAppleConfigurationProvider _configurationProvider;
 
         public AppleIdService(
-            IAppleClientSecretGenerator appleClientSecretGenerator,
+            IAppleClientSecretGeneratorFactory appleClientSecretGeneratorFactory,
             IAppleIdClient client,
             IAppleIdentityTokenReader appleIdentityTokenReader,
             IAppleConfigurationProvider configurationProvider)
         {
-            _appleClientSecretGenerator = appleClientSecretGenerator;
+            _appleClientSecretGeneratorFactory = appleClientSecretGeneratorFactory;
             _client = client;
             _appleIdentityTokenReader = appleIdentityTokenReader;
-            _configuration = configurationProvider.Get();
+            _configurationProvider = configurationProvider;
         }
 
         /// <summary>Exchange authorization code with access token.</summary>
         /// <param name="authorizationCode"></param>
-        public AppleAccessToken FetchAccessToken(string authorizationCode)
+        public AppleAccessToken FetchAccessToken(string clientId, string authorizationCode)
         {
             if (string.IsNullOrEmpty(authorizationCode))
                 throw new ArgumentNullException(nameof(authorizationCode));
-
+            
+            var configuration = _configurationProvider.Get(clientId);
+            var clientSecretGenerator = _appleClientSecretGeneratorFactory.Create(configuration);
+            
             var clientResponse = _client.FetchAccessToken(new FetchAccessTokenParameters {
                 AuthorizationCode = authorizationCode,
-                ClientId = _configuration.ClientId,
-                RedirectUri = _configuration.RedirectUri,
-                ClientSecret = _appleClientSecretGenerator.GenerateClientSecret(),
+                ClientId = configuration.ClientId,
+                RedirectUri = configuration.RedirectUri,
+                ClientSecret = clientSecretGenerator.Generate()
             });
-
             var identityToken = _appleIdentityTokenReader.Read(clientResponse.IdToken);
 
             return new AppleAccessToken(true) 
@@ -47,17 +49,23 @@ namespace Stho.Auth.Apple.Implementation
             };
         }
 
-        public AppleSignInUri GetAppleSignInUri(AuthScope scope)
+        public AppleSignInUri GetAppleSignInUri(string clientId, AuthScope scope)
+        {
+            var configuration = _configurationProvider.Get(clientId);
+            return GetAppleSignInUri(configuration, scope);
+        }
+        
+        public AppleSignInUri GetAppleSignInUri(IAppleIdConfiguration configuration, AuthScope scope)
         {
             var random = new Random((int)DateTime.UtcNow.Ticks);
             var state = random.Next(10000, 99999).ToString("X");
 
-            var uri = new Uri($"{_configuration.Audience}/auth/authorize", UriKind.Absolute);
+            var uri = new Uri($"{configuration.Audience}/auth/authorize", UriKind.Absolute);
             var query = new NameValueCollection {
                 {"response_type", "code"},
                 {"response_mode", "form_post"},
-                {"client_id", _configuration.ClientId},
-                {"redirect_uri", _configuration.RedirectUri},
+                {"client_id", configuration.ClientId},
+                {"redirect_uri", configuration.RedirectUri},
                 {"state", state},
                 {"scope", "name email"}
             };

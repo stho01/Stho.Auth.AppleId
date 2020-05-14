@@ -11,20 +11,20 @@ namespace Stho.Auth.Apple.Implementation
     {
         private readonly IAppleIdConfiguration _configuration;
         private readonly JwtSecurityTokenHandler _handler;
-
-        public AppleSecretGenerator(IAppleConfigurationProvider configurationProvider)
+        
+        public AppleSecretGenerator(IAppleIdConfiguration configuration)
         {
-            _configuration = configurationProvider.Get();
+            _configuration = configuration;
             _handler = new JwtSecurityTokenHandler();
         }
-
-        public string GenerateClientSecret()
+        
+        public string Generate()
         {
             var securityToken = CreateSecurityToken();
 
             return _handler.WriteToken(securityToken);
         }
-
+        
         public JwtSecurityToken CreateSecurityToken()
         {
             var utcNow = DateTime.UtcNow;

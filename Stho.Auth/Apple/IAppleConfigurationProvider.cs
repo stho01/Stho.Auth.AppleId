@@ -2,6 +2,7 @@
 {
     public interface IAppleConfigurationProvider
     {
-        IAppleIdConfiguration Get();
+        IAppleIdConfiguration[] Get();
+        IAppleIdConfiguration Get(string id);
     }
 }

@@ -4,7 +4,7 @@ namespace Stho.Auth.Apple
 {
     public interface IAppleIdService
     {
-        AppleAccessToken FetchAccessToken(string authorizationCode);
-        AppleSignInUri GetAppleSignInUri(AuthScope scope);
+        AppleAccessToken FetchAccessToken(string clientId, string authorizationCode);
+        AppleSignInUri GetAppleSignInUri(string clientId, AuthScope scope);
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IAppleClientSecretGenerator
     {
-        string GenerateClientSecret();
+        string Generate();
     }
 }
