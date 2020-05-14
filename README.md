@@ -4,17 +4,14 @@
 
 ```xml
 <configuration>
-  <configSections>
-    <section name="apple" type="Stho.Auth.Apple.Configuration.AppleSection"  />
-  </configSections>
-
-  <apple clientId="com.your.client"
-         redirectUri="https://example-app.com/redirect"
-         audience="https://appleid.apple.com"
-         keyId="your_key_id"
-         issuer="your_issuer_id"
-         expiresInMinutes="5"
-         privateKey="your_pk_code" />
+    <configSections>
+        <section name="apple" type="Stho.Auth.Apple.Configuration.AppleSection"  />
+    </configSections>
+    <apple>
+        <appleId redirectUri="https://example-app.com/redirect" audience="https://appleid.apple.com">
+            <client clientId="com.your.client"  keyId="key_id" issuer="issuer_id" privateKey="pk" />
+        </appleId>
+    </apple>
 </configuration>
 ```
 # Signin procedure

@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stho.Auth.WebExample", "Sth
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stho.Auth.IntegrationTests", "Stho.Auth.IntegrationTests\Stho.Auth.IntegrationTests.csproj", "{386ED449-F0FF-4DAC-96F8-FA4C9A7B5794}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stho", "Stho", "{BC32E756-56A4-4D43-B7A4-EA373EC19DD7}"
+ProjectSection(SolutionItems) = preProject
+	README.md = README.md
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
