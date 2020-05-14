@@ -67,6 +67,7 @@ public static void RegisterTypes(IUnityContainer container)
     container.RegisterType<IAppleIdentityTokenReader, AppleIdentityTokenReader>();
     container.RegisterType<IAppleClientSecretGenerator, AppleSecretGenerator>();
     container.RegisterType<IAppleConfigurationProvider, AppleWebConfigurationProvider>();
+    container.RegisterType<IAppleClientSecretGeneratorFactory, AppleSecretGeneratorFactory>();
 }
 ```
 
