@@ -23,7 +23,7 @@ namespace Stho.Auth.Apple.Configuration
             set => this[AudiencePropertyKey] = value;
         }
         
-        [ConfigurationProperty(ExpiresInMinutesPropertyKey)]
+        [ConfigurationProperty(ExpiresInMinutesPropertyKey, DefaultValue = 5)]
         public int ExpiresInMinutes
         {
             get => (this[ExpiresInMinutesPropertyKey] as int?) ?? 0;

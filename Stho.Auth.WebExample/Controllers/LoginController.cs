@@ -33,8 +33,8 @@ namespace Stho.Auth.WebExample.Controllers
         {
             try
             {
-                var clientId = HttpContext.Session["clientId"] as string;
-                var response = _appleIdService.FetchAccessToken(clientId, request.Code);
+                // var clientId = HttpContext.Session["clientId"] as string;
+                var response = _appleIdService.FetchAccessToken("no.stho.client", request.Code);
                 
                 return View(new AppleCallbackViewModel(response));
             }

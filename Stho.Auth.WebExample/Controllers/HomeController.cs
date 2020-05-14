@@ -8,10 +8,14 @@ namespace Stho.Auth.WebExample.Controllers
     public class HomeController : Controller
     {
         private readonly IAppleConfigurationProvider _appleConfigurationProvider;
+        private readonly IAppleClientSecretGeneratorFactory _appleClientSecretGeneratorFactory;
 
-        public HomeController(IAppleConfigurationProvider appleConfigurationProvider)
+        public HomeController(
+            IAppleConfigurationProvider appleConfigurationProvider, 
+            IAppleClientSecretGeneratorFactory appleClientSecretGeneratorFactory)
         {
             _appleConfigurationProvider = appleConfigurationProvider;
+            _appleClientSecretGeneratorFactory = appleClientSecretGeneratorFactory;
         }
         
         public ActionResult Index()
@@ -42,6 +46,14 @@ namespace Stho.Auth.WebExample.Controllers
         public ActionResult Configuration()
         {
             return View(_appleConfigurationProvider.Get());
+        }
+
+        public ActionResult ClientSecret()
+        {
+            var config = _appleConfigurationProvider.Get("no.stho.client");
+            var generator = _appleClientSecretGeneratorFactory.Create(config);
+            
+            return Content(generator.Generate());
         }
     }
 }
