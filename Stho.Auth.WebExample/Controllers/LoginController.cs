@@ -20,10 +20,10 @@ namespace Stho.Auth.WebExample.Controllers
 
         public ActionResult SignInWithApple()
         {
-            var signInUri = _appleIdService.GetAppleSignInUri("no.stho.client", AuthScope.Email | AuthScope.Name);
+            var signInUri = _appleIdService.GetAppleSignInUri("com.your.client", AuthScope.Email | AuthScope.Name);
             
-            HttpContext.Session["state"] = signInUri.State;
-            HttpContext.Session["clientId"] = signInUri.Configuration.ClientId;
+            // TODO: save state to check when getting reply from apple  
+            // signInUri.State
             
             return Redirect(signInUri.ToString());
         }
@@ -33,8 +33,10 @@ namespace Stho.Auth.WebExample.Controllers
         {
             try
             {
-                // var clientId = HttpContext.Session["clientId"] as string;
-                var response = _appleIdService.FetchAccessToken("no.stho.client", request.Code);
+                // TODO: compare states  
+                // request.State == signInUri.State
+                
+                var response = _appleIdService.FetchAccessToken("com.your.client", request.Code);
                 
                 return View(new AppleCallbackViewModel(response));
             }

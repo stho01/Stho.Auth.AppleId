@@ -36,24 +36,5 @@ namespace Stho.Auth.WebExample.Controllers
 
             return View();
         }
-
-        [HttpPost]
-        public ActionResult GetSomeData(AppleCallbackRequest request)
-        {
-            return Content(JsonConvert.SerializeObject(request, Formatting.Indented), "application/json");
-        }
-
-        public ActionResult Configuration()
-        {
-            return View(_appleConfigurationProvider.Get());
-        }
-
-        public ActionResult ClientSecret()
-        {
-            var config = _appleConfigurationProvider.Get("no.stho.client");
-            var generator = _appleClientSecretGeneratorFactory.Create(config);
-            
-            return Content(generator.Generate());
-        }
     }
 }
